@@ -571,5 +571,3 @@ jobs:
             linux/arm/v7
           tags: ${{ steps.meta_release.outputs.tags }}
           labels: ${{ steps.meta_release.outputs.labels }}
-TAGS='with_gvisor,with_quic,with_dhcp,with_wireguard,with_utls,with_acme,with_clash_api,with_tailscale'
-go build -tags $TAGS -o sb ./cmd/sing-box/
