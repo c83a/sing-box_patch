@@ -264,7 +264,7 @@ jobs:
         TAGS='with_gvisor,with_quic,with_dhcp,with_wireguard,with_utls,with_acme,with_clash_api,with_tailscale'
         go env
         go build -tags $TAGS -o mihomo ./cmd/sing-box/
-	ln mihomo mihomo.exe
+        ln mihomo mihomo.exe
         #go build -v -tags "with_gvisor" -trimpath -ldflags "${BUILDTAG} -X 'github.com/metacubex/mihomo/constant.Version=${VERSION}' -X 'github.com/metacubex/mihomo/constant.BuildTime=${BUILDTIME}' -w -s -buildid="
         if [ "${{matrix.jobs.goos}}" = "windows" ]; then
           cp mihomo.exe mihomo-${{matrix.jobs.goos}}-${{matrix.jobs.output}}.exe
