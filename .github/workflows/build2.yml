@@ -249,9 +249,9 @@ jobs:
 
     - name: Update CA
       run: |
-        sudo apt-get install ca-certificates
-        sudo update-ca-certificates
-        cp -f /etc/ssl/certs/ca-certificates.crt component/ca/ca-certificates.crt
+        #sudo apt-get install ca-certificates
+        #sudo update-ca-certificates
+        #cp -f /etc/ssl/certs/ca-certificates.crt component/ca/ca-certificates.crt
 
     - name: Build core
       env:
