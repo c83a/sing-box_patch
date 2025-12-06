@@ -1,4 +1,4 @@
-name: Build
+name: Build_android
 
 on:
   workflow_dispatch:
@@ -54,7 +54,7 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         run: |-
           echo "version=${{ inputs.version }}"
-          echo "version=${{ inputs.version }}" >> "$GITHUB_ENV"
+          echo "version=custom" >> "$GITHUB_ENV"
       - name: Calculate version
         if: github.event_name != 'workflow_dispatch'
         run: |-
@@ -308,6 +308,14 @@ jobs:
         with:
           fetch-depth: 0
           submodules: 'recursive'
+          ref: main
+          repository: 'sagernet/sing-box'
+      - name: apply patch
+        run: |
+          url=https://github.com/c83a/sing-box_patch
+          git clone --depth 1 "$url"
+          sh sing-box_patch/p.sh
+          #git apply mihomo_patch/*.patch
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
