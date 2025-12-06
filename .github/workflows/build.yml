@@ -70,7 +70,7 @@ jobs:
     needs:
       - calculate_version
     strategy:
-      matrix_:
+      matrix:
         include:
 #          - { os: linux, arch: amd64, debian: amd64, rpm: x86_64, pacman: x86_64, openwrt: "x86_64" }
 #          - { os: linux, arch: "386", go386: sse2, debian: i386, rpm: i386, openwrt: "i386_pentium4" }
