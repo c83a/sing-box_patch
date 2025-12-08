@@ -11,7 +11,7 @@ on:
         description: "Build type"
 #        required: true
         type: choice
-        default: "Binary"
+        default: "Android"
         options:
           - All
           - Binary
@@ -184,6 +184,11 @@ jobs:
           export CC='${{ matrix.ndk }}-clang'
           export CXX="${CC}++"
           mkdir -p dist
+          d=/home/runner/work/sing-box_patch/sing-box_patch/clients/android/app
+          mkdir -p $d
+          f=${d}/release.keystore
+          keytool -genkey -v -keystore $f  -alias com.sing  -keyalg RSA -keysize 2048 -validity 10000
+
           GOOS=$BUILD_GOOS GOARCH=$BUILD_GOARCH build go build -v -trimpath -o dist/sing-box -tags "${BUILD_TAGS}" \
           -ldflags '-s -buildid= -X github.com/sagernet/sing-box/constant.Version=${{ needs.calculate_version.outputs.version }}' \
           ./cmd/sing-box
