@@ -320,7 +320,7 @@ jobs:
           d=/home/runner/work/sing-box_patch/sing-box_patch/clients/android/app
           mkdir -p $d
           f=${d}/release.keystore
-          keytool -genkey -v -keystore $f  -alias com.sing  -keyalg RSA -keysize 2048 -validity 10000\
+          keytool -genkey -v -keystore $f  -alias com.sing  -keyalg RSA -keysize 2048 -validity 10000 \
           -dname "CN=sing-box, OU=IT, O=diy, L=City, S=State, C=CN" \
           -storepass nooneneedit \
           -keypass yesyesyes
