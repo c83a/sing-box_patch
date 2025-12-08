@@ -386,6 +386,9 @@ jobs:
           LOCAL_PROPERTIES_2: ${{ secrets.LOCAL_PROPERTIES }}
           KEYSTORE_PASSWORD: yesyesyes
           KEY_PASSWORD: yesyesyes
+          ALIAS_NAME: com.sing
+          KEYSTORE_PASS: yesyesyes
+          KEY_PASS: yesyesyes
           KEY_ALIAS: com.sing
       - name: Prepare upload
         run: |-
