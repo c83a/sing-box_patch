@@ -378,12 +378,12 @@ jobs:
         run: |-
           mkdir clients/android/app/libs
           cp libbox.aar clients/android/app/libs
-          cd clients/android
           #./gradlew :app:assemblePlayRelease :app:assembleOtherRelease
           g=release.keystore
           d=/home/runner/work/sing-box_patch/sing-box_patch/clients/android/app
           f=${d}/release.keystore
           mv $g $f
+          cd clients/android
           ./gradlew assembleRelease
         env:
           JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
