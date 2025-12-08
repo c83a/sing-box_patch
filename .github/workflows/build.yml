@@ -323,7 +323,7 @@ jobs:
           if [ -f $f ];then  rm $f;fi
           keytool -genkeypair -v -keystore $f  -alias com.sing  -keyalg RSA -keysize 2048 -validity 10000 \
           -dname "CN=sing-box, OU=IT, O=diy, L=City, S=State, C=CN" \
-          -storepass nooneneedit \
+          -storepass yesyesyes \
           -keypass yesyesyes
       - name: Setup Go
         uses: actions/setup-go@v5
@@ -378,11 +378,15 @@ jobs:
           mkdir clients/android/app/libs
           cp libbox.aar clients/android/app/libs
           cd clients/android
-          ./gradlew :app:assemblePlayRelease :app:assembleOtherRelease
+          #./gradlew :app:assemblePlayRelease :app:assembleOtherRelease
+          ./gradlew assembleRelease
         env:
           JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
-          LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
+          LOCAL_PROPERTIES_2: ${{ secrets.LOCAL_PROPERTIES }}
+          KEYSTORE_PASSWORD: yesyesyes
+          KEY_PASSWORD: yesyesyes
+          KEY_ALIAS: com.sing
       - name: Prepare upload
         run: |-
           mkdir -p dist
