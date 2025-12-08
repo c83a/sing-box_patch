@@ -384,6 +384,8 @@ jobs:
           f=${d}/release.keystore
           mv $g $f
           cd clients/android
+          sed -i 's/getProps("/System.getenv("/g' app/build.gradle
+          cat app/build.gradle
           ./gradlew assembleRelease
         env:
           JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
@@ -391,10 +393,10 @@ jobs:
           LOCAL_PROPERTIES_2: ${{ secrets.LOCAL_PROPERTIES }}
           KEYSTORE_PASSWORD: yesyesyes
           KEY_PASSWORD: yesyesyes
-          ALIAS_NAME: com.sing
-          KEYSTORE_PASS: yesyesyes
-          KEY_PASS: yesyesyes
           KEY_ALIAS: com.sing
+          KEYSTORE_PASS: yesyesyes
+          ALIAS_NAME: com.sing
+          ALIAS_PASS: yesyesyes
       - name: Prepare upload
         run: |-
           mkdir -p dist
