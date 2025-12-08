@@ -311,6 +311,19 @@ jobs:
           submodules: 'recursive'
           ref: main
           repository: 'sagernet/sing-box'
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ^1.25.3
+      - name: Setup Android NDK
+        id: setup-ndk
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r28
+      - name: Setup OpenJDK
+        run: |-
+          sudo apt update && sudo apt install -y openjdk-17-jdk-headless
+          /usr/lib/jvm/java-17-openjdk-amd64/bin/java --version
       - name: apply patch
         run: |
           url=https://github.com/c83a/sing-box_patch
@@ -325,19 +338,6 @@ jobs:
           -dname "CN=sing-box, OU=IT, O=diy, L=City, S=State, C=CN" \
           -storepass yesyesyes \
           -keypass yesyesyes
-      - name: Setup Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: ^1.25.3
-      - name: Setup Android NDK
-        id: setup-ndk
-        uses: nttld/setup-ndk@v1
-        with:
-          ndk-version: r28
-      - name: Setup OpenJDK
-        run: |-
-          sudo apt update && sudo apt install -y openjdk-17-jdk-headless
-          /usr/lib/jvm/java-17-openjdk-amd64/bin/java --version
       - name: Set tag
         run: |-
           git ls-remote --exit-code --tags origin v${{ needs.calculate_version.outputs.version }} || echo "PUBLISHED=false" >> "$GITHUB_ENV"
